@@ -1,0 +1,2 @@
+{% block subject %}{% endblock %}
+{% block content %}{% endblock %}

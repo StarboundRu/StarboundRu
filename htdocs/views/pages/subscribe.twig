@@ -1,0 +1,29 @@
+<div id="news">
+{% embed "blocks/table.twig" with {nofooter: true} %}
+        {% block title %}Рассылка Starbound{% endblock %}
+        {% block content %}
+                {% if subscribed %}
+                <p class="success">Вы подписались на {% if subs.news %}все новости об игре <b>Starbound</b>.{% else %}{%if subs.release %}уведомление о выходе игры <b>Starbound</b>{%endif%}{%if subs.translate %}{%if subs.release %} и {%endif%}переводы на русский язык{%endif%}.{% endif %} Спасибо!</p>
+                <p>Вы можете изменить параметры подписки в форме ниже.</p>
+                {% else %}
+                {% if unsubscribed %}
+                <p class="success">Вы отписались от рассылки <b>Starbound</b>.</p>
+                {% endif %}
+                <p>Чтобы быть в курсе всех новостей, связанных с игрой <b>Starbound</b>, укажите свой E-Mail.</p>
+                {% endif %}
+                {% if error %}<p class="error">{{error}}</p>{% endif %}
+                <div class="post">
+                    <div class="post-title">Параметры подписки</div>
+                    <div class="post-text">
+                        <form method="POST" action="{{path('subscribe')}}">
+                        <p>E-mail: <input type="text" name="email" value="{{email}}" /><br />
+                            <input type="checkbox" id="cb_news" name="news" value="1" {% if subs.news %}checked="checked"{%endif%} /> <label for="cb_news">Сообщать обо всех новостях, связанных с игрой.</label><br />
+                            <input type="checkbox" id="cb_release" name="release" value="1" {% if subs.release %}checked="checked"{%endif%} /> <label for="cb_release">Сообщить о выходе игры.</label><br />
+                            <input type="checkbox" id="cb_translate" name="translate" value="1" {% if subs.translate %}checked="checked"{%endif%} /> <label for="cb_translate">Сообщать о новых переводах на русский язык.</label><br />
+                            <input type="submit" value="Сохранить" />
+                        </p>
+                        </form>
+                </div>
+        {% endblock %}
+{% endembed %}
+</div>

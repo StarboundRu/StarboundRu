@@ -1,0 +1,26 @@
+    <div class="table">
+        <div class="header"><div class="header-left">{% block icon %}<img src="/img/sb/icons/{% if icon is defined %}{{icon}}{% else %}2{% endif %}.png" />{% endblock %}</div><div class="header-text"><div class="text">{% block title %}{% endblock %}</div></div><div class="header-right"></div></div>
+        <div class="content">
+            {% block custom_content %}
+            <div class="text">
+                {% block content %}{% endblock %}
+            </div>
+            {% if nofooter is not defined %}
+            <div class="footer">
+                {% if nodate is not defined %}
+                <div class="date">{% block date %}{% endblock %}</div>
+                {% endif %}
+                {% block footer %}{% endblock %}
+            </div>
+            {% endif %}
+            {% if withcomments is defined %}
+            <div class="footer">
+<div id="vk_comments"></div>
+<script type="text/javascript">
+//VK.Widgets.Comments("vk_comments", {limit: 20, width: "960", attach: "*"});
+</script>
+            </div>
+            {% endif %}
+            {% endblock %}
+        </div>
+    </div>

@@ -1,0 +1,8 @@
+{% extends "emails/base.twig.html" %}
+{% block content %}
+<p><font face="Tahoma" size="3" color="#cccccc">Привет, <font color="#ffffff"><b>{{username}}</b></font>!</font></p>
+<p><font face="Tahoma" size="3" color="#cccccc">Этот электронный адрес был указан для регистрации на сайте <b>starbound.ru</b>.</font></p>
+<p><font face="Tahoma" size="3" color="#cccccc">Для подтверждения регистрации перейдите по ссылке:</font></p>
+<p><a href="http://starbound.ru/activate/{{code}}"><font face="Tahoma" size="3" color="#4477cc">http://starbound.ru/activate/{{code}}</font></a></p>
+{% endblock %}
+{% block disclaimer %}Если вы не регистрировались на нашем сайте, то просто удалите это письмо.{% endblock %}

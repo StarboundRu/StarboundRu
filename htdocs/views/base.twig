@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <script src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="//vk.com/js/api/openapi.js?87"></script>
+        <script type="text/javascript">VK.init({apiId: {{vk_api_id}}, onlyWidgets: true});</script>
+        <script src="/js{% if debug %}.src{% endif %}/gameheader.js?v=15"></script>
+        <script src="/js{% if debug %}.src{% endif %}/network.js?v=15" type="text/javascript"></script>
+        <script src="/js{% if debug %}.src{% endif %}/site.js?v=15" type="text/javascript"></script>
+        <script src="/js/ckeditor/ckeditor.js"></script>
+        <script>
+$(function() {
+    site = new Site('{{app.session.id}}', {{app.user.id}}, '{{app.user.getSignature(app.session.id)}}');
+});
+        </script>
+        <link href="/css/style.css?v=13" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+<script>
+<!-- Google Analytics -->
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-39807789-1', 'starbound.ru');
+  ga('send', 'pageview');
+<!-- Yandex.Metrika -->
+(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter21002008 = new Ya.Metrika({id:21002008, trackHash:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/21002008" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+        <div id="topheader">
+            <canvas id="starboundgame" width="800" height="240"></canvas>
+            <div id="topheader-menu">
+                <ul>
+                    <li><a href="{{path('index')}}">Новости</a></li>
+                    <li><a href="{{path('about')}}">Об игре</a>
+                        <ul>
+                            <li><a href="{{path('about')}}">Вступление</a></li>
+                            <li><a href="{{path('faq')}}">FAQ</a></li>
+                            <li><a href="/roadmap/" target="_blank">Roadmap (прогресс разработки)</a></li>
+                            <li><a href="{{path('subscribe')}}">Рассылка</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{path('chronicle', {issue: 1})}}">Хроники</a>
+                        <ul>
+                            <li><a href="{{path('chronicle', {issue: 1})}}">Выпуск 1: Март 2013</a></li>
+                            <li><a href="{{path('chronicle', {issue: 2})}}">Выпуск 2: Апрель 2013</a></li>
+                            <li><a href="{{path('chronicle', {issue: 3})}}">Выпуск 3: Май 2013</a></li>
+                            <li><a href="{{path('chronicle', {issue: 4})}}">Выпуск 4: Июнь 2013</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/users/">Игроки</a></li>
+                    <li><a href="{{path('download')}}">Файлы</a>
+                        <ul>
+                            <li><a href="{{path('download')}}">Игра</a></li>
+                            <li><a href="{{path('music')}}">Музыка</a></li>
+                            <li><a href="{{path('monsters')}}">Пятничные монстры</a></li>
+                            <li><a href="{{path('wallpaper')}}">Обои</a></li>
+                            {% if false %}
+                            <li><a href="{{path('screenshots')}}">Скриншоты</a></li>
+                            <li><a href="{{path('video')}}">Видео</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li><a href="{{path('download')}}">Общение</a>
+                        <ul>
+                            <li><a href="http://vk.com/starbound" target="_blank">Вконтакте</a></li>
+                            <li><a href="https://plus.google.com/+StarboundRus" target="_blank">Google+</a></li>
+                            <li><a href="https://twitter.com/starbound_ru" target="_blank">Twitter</a></li>
+                            <li><a href="{{path('forum')}}">Форум</a></li>
+                            <li><a href="skype:?chat&blob=u3kwXOzriGzjpFb43hKFiDAH5NX-yPkwGayQ4QAyAggk1KkbcihVbvo9zMNwktkYAtjQ">Skype</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://vk.com/starbound" target="_blank">Вконтакте</a></li>
+                    <li><a href="{{path('server')}}">Сервер</a></li>
+                </ul>
+                <div id="userinfo">
+                    <div class="details" {% if not app.user.id %}style="display:none"{% endif %}><a href="{% if app.user.id %}{{ path('user', {username: app.user.usernameSafe}) }}{% else %}#{% endif %}" id="my_username">{{app.user.username}}</a><br /><a href="/sign/out" class="exit" onclick="return SignForm.Out();">Выйти</a></div>
+                    <div class="signlinks" {% if app.user.id %}style="display:none"{% endif %}><a href="/sign/up" onclick="return SignForm.Register();">Регистрация</a><br /><a href="/sign/in" onclick="return SignForm.Login();">Вход</a></div>
+                    <div class="avatar"><img src="/img/sb/avdefault.png" /></div>
+                </div>
+                <div id="loading"><span class="text">Загрузка...</span></div>
+            </div>
+            <img id="topheader-logo" src="/img/starbound-rc.png" />
+            <div id="browser-support">
+                <div><a href="http://www.google.ru/intl/ru/chrome/browser/" target="_blank" class="chrome">&nbsp;</a>
+                <a href="http://www.mozilla.org/en-US/firefox/all/" target="_blank" class="firefox">&nbsp;</a>
+                <a href="http://www.opera.com/ru/computer" target="_blank" class="opera">&nbsp;</a>
+                <a href="http://windows.microsoft.com/ru-ru/internet-explorer/download-ie" target="_blank" class="ie">&nbsp;</a></div>
+                <div class="hint">Ваш браузер безнадёжно устарел!<br />Обновись, если хочешь пользоваться всеми функциями сайта!</div>
+            </div>
+            <div id="topheader-radio"><div id="radio-track-timeline"><div id="radio-track-pos"></div></div><div id="radio-controls"><a class="radio-button" href="#play" id="radio-play" title="Играть/Пауза">&nbsp;</a><a class="radio-button" href="#volume" id="radio-volume" title="Громкость">&nbsp;</a><a class="radio-button" href="#download" id="radio-download" target="_blank" title="Скачать">&nbsp;</a> <span id="radio-track-name">Радио Starbound</span></div></div>
+            <div id="chat">
+                <div id="chat-container">
+                    <div id="chat-messages"></div>
+                    <div id="chat-players"></div>
+                </div>
+                <div id="chat-scroll">
+                    <div id="chat-scroll-button"></div>
+                </div>
+                <div id="chat-buttons">
+                    <input type="text" id="chat-input" />
+                    <a href="#" id="chat-button-messages"><img src="/img/chat/messages.png" /></a>
+                    <a href="#" id="chat-button-players"><img src="/img/chat/players.png" /></a>
+                </div>
+            </div>
+        </div>
+        
+        {% block content_container %}
+        <div id="content">
+            {% block content %}{{content|raw}}{%endblock%}
+        </div>
+        {%endblock%}
+
+        <div id="registerform">
+        {% embed 'blocks/table.twig' with {icon: 1} %}
+                {% block title %}Регистрация{% endblock %}
+                {% block content %}
+                <div class="formline method"><div>С помощью:</div><a href="#" class="method_email selected" onclick="return SignForm.Method('email')"><img src="/img/sb/icons/email.png" /></a> <a href="#" class="method_vk" onclick="return SignForm.Method('vk')"><img src="/img/sb/icons/vk.png" /></a></div>
+                <div class="formline regmail regonly regmail"><label for="reg_email">E-mail:</label><input type="text" name="email" id="reg_email" /><span class="error error_email">*</span></div>
+                <div class="formline regonly">Имя и пароль для входа на сервер:</div>
+                <div class="formline signmail"><label for="reg_username">Имя:</label><input type="text" name="username" id="reg_username" /><span class="error error_username">*</span></div>
+                <div class="formline signmail"><label for="reg_pass1">Пароль:</label><input type="password" name="pass1" id="reg_pass1" /><span class="error error_password">*</span></div>
+                <div class="formline regonly"><label for="reg_pass2">Повтор пароля:</label><input type="password" name="pass2" id="reg_pass2" /></div>
+                <div class="formline error error_info">Ошибка</div>
+                {% endblock %}
+                {% block footer %}
+                    <a href="#" class="cancel" onclick="return SignForm.Hide();">Отмена</a>
+                    <a href="#" class="ok" onclick="return SignForm.Submit();">Зарегистрироваться</a>
+                    <span class="submitting">...</span>
+                {% endblock %}
+        {% endembed %}
+        </div>
+    </body>
+</html>

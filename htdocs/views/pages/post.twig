@@ -1,0 +1,42 @@
+<div id="news">
+{% embed "blocks/table.twig" with {withcomments: true, icon: post.icon} %}
+        {% block title %}{% if app.user.canPostNews %}<div id="post_title" contenteditable="true">{{ post.title }}</div>{% else %}{{ post.title }}{% endif %}{% endblock %}
+        {% block content %}
+            {% if app.user.canPostNews %}
+            <div id="post_content" contenteditable="true">{{ post.content_safe|raw }}</div>
+            {% else %}
+            {{ post.content_safe|raw }}
+            {% endif %}
+        {% endblock %}
+        {% block date %}{{ post.dt|date("d.m.Y") }}{% endblock %}
+        {% block footer %}
+            {% if app.user.canPostNews %}
+            Тип: <select id="post_type">
+                <option value="0" {% if post.news_type == 0 %}selected="selected"{% endif %}>Не показывать</option>
+                <option value="1" {% if post.news_type == 1 %}selected="selected"{% endif %}>Обычный</option>
+                <option value="2" {% if post.news_type == 2 %}selected="selected"{% endif %}>Перевод</option>
+            </select>
+            
+            Иконка: <select id="post_icon">
+                <option value="1" {% if post.icon == 1 %}selected="selected"{% endif %}>Гаечный ключ</option>
+                <option value="2" {% if post.icon == 2 %}selected="selected"{% endif %}>Закрытая книга</option>
+                <option value="3" {% if post.icon == 3 %}selected="selected"{% endif %}>Открытая кинга</option>
+                <option value="4" {% if post.icon == 4 %}selected="selected"{% endif %}>Скачать</option>
+                <option value="5" {% if post.icon == 5 %}selected="selected"{% endif %}>Перевод</option>
+                <option value="6" {% if post.icon == 6 %}selected="selected"{% endif %}>Лупа</option>
+            </select>
+            
+            Оригинал: <input type="text" id="post_url" value="http://{{ post.news_source }}" />
+            ЧПУ: <input type="text" id="post_hrl" value="{{ post.hrl }}" />
+            <button onclick="return site.savePost({{post.news_id}}, CKEDITOR.instances.post_title.getData(), CKEDITOR.instances.post_content.getData(), $('#post_icon option:selected').val(), $('#post_type option:selected').val(), $('#post_url').val(), $('#post_hrl').val());">Сохранить</button>
+            {% endif %}
+            {% if post.news_type == 2 %}Перевод новости <a href="http://{{post.news_source}}">{{post.news_source}}</a>{% endif %}
+        {% endblock %}
+{% endembed %}
+
+</div>
+<script>
+    CKEDITOR.disableAutoInline = true;
+    CKEDITOR.inline( 'post_title' , {allowedContent: 'i'});
+    CKEDITOR.inline( 'post_content' , {allowedContent: ''});
+</script>

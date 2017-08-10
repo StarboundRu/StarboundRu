@@ -1,0 +1,27 @@
+<div id="news">
+{% embed "blocks/table.twig" with {nofooter: true, icon: 4} %}
+        {% block title %}Скачать Starbound{% endblock %}
+        {% block content %}
+    <p>Скачать и установить бета-версию игры можно в Steam ;)</p>
+    <p><a href="http://store.steampowered.com/app/211820/" target="_blank">http://store.steampowered.com/app/211820/</a></p>
+<!--    
+    <p>Единственная известная информация о дате выхода игры - 2013 год. Проследить за прогрессом разработки игры вы можете на странице <a href="/roadmap/" target="_blank">Roadmap</a>.</p>
+    <p>Пока игра не вышла, предлагаем вам скачать <a href="{{path('music')}}">музыку из игры</a>, <a href="{{path('wallpaper')}}">обои для рабочего стола</a>, посмотреть скриншоты, видео и <a href="{{path('monsters')}}">пятничных монстров</a>.</p>
+    <div class="post">
+        <div class="post-title">Уведомление о выходе</div>
+        <div class="post-text">
+            <p>Мы можем сообщить вам о выходе игры, если вы оставите нам свой адрес.</p>
+            <form method="POST" action="{{path('subscribe')}}">
+            <p>E-mail: <input type="text" name="email" /><br />
+                <input type="checkbox" id="cb_release" name="release" value="1" checked="checked" /> <label for="cb_release">Сообщить о выходе игры.</label><br />
+                <input type="submit" value="Подписаться" />
+            </p>
+            </form>
+        </div>
+    </div>
+-->
+        {% endblock %}
+        {% block date %}{% endblock %}
+        {% block footer %}{% endblock %}
+{% endembed %}
+</div>

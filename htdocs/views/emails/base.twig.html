@@ -1,0 +1,17 @@
+<html>
+<body>
+<table bgcolor="#333333" width="100%" cellpadding="20"><tr><td>
+<table width="640px" align="center" bgcolor="#555555" cellspacing="1" cellpadding="10"><tr><td bgcolor="#000000">
+<table width="100%">
+<tr><td align="center"><img src="http://starbound.ru/img/starbound-rc.png" width="331" height="120" /></td></tr>
+<tr><td align="center"><font face="Tahoma" color="#ffffff" size="5">{% block subject %}{{subject}}{% endblock %}</font></td></tr>
+<tr><td><p>&nbsp;</p>
+{% block content %}
+{% endblock %}
+</td></tr>
+</table>
+</td></tr>
+<tr><td bgcolor="#111111"><font face="Tahoma" size="2" color="#888888">{% block disclaimer %}{% endblock %}</font></td></tr></table>
+</td></td></table>
+</body>
+</html>

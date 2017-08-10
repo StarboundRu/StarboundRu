@@ -1,0 +1,14 @@
+<div id="news">
+{% embed "blocks/table.twig" with {nofooter: true, withcomments: true, icon: 4} %}
+        {% block title %}Музыка из игры Starbound{% endblock %}
+        {% block content %}
+    {% for track in tracks %}
+    <p>
+        <a href="/uploads/ost/{{track.src}}#play" class="radio-button" onclick="gPlayTrack('{{track.src}}');return false"></a>
+        <a href="/uploads/ost/{{track.src}}">{{track.name}}</a></p>
+    {% endfor %}
+        {% endblock %}
+        {% block date %}{% endblock %}
+        {% block footer %}{% endblock %}
+{% endembed %}
+</div>

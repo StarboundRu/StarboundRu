@@ -1,0 +1,32 @@
+<div id="news">
+{% embed "blocks/table.twig" with {icon: 1} %}
+        {% block title %}{{ user.username }}{% endblock %}
+        {% block content %}
+            <img src="/avatar/{{user.avatar}}.png" class="user_avatar" />
+            <div class="user_stats">
+                <div class="user_stats_row"><label>Уровень:</label> {{user.level}} ({{user.experience}}/{{user.levelExperience}})</div>
+                <div class="user_stats_row"><label>Здоровье:</label> {{user.health}}/{{user.maxHealth}}</div>
+                <div class="user_stats_row"><label>Защита:</label> {{user.armor}}</div>
+                <div class="user_stats_row"><label>Возраст:</label> {{user.age|decl('день','дня','дней')}}</div>
+            </div>
+            <div class="user_stats">
+                <div class="user_stats_row"><label>Убийств:</label> {{user.wins}}</div>
+                <div class="user_stats_row"><label>Смертей:</label> {{user.defeats}}</div>
+                <div class="user_stats_row"><label>Комментарии:</label> 0</div>
+                <div class="user_stats_row"><label>На форуме:</label> 0</div>
+            </div class="user_stats">    
+            <div class="user_weapons">
+                <h3>Инвентарь</h3>
+                <ul class="slots">
+                    {% for itemid,item in user.inventory %}
+                        <li><img src="/game/items/{{itemid}}.png" /><div>{{item}}</div></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endblock %}
+        {% block footer %}
+            * Информация, приведённая на этой странице, относится к достижениям на сайте и не имеет отношения к игровому персонажу в Starbound.
+        {% endblock %}
+{% endembed %}
+
+</div>

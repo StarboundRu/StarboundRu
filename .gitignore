@@ -1,0 +1,11 @@
+/.idea
+/3rdparty
+/nbproject
+/oldv
+/screenshots
+/temp
+/vendor
+/composer_installer.php
+/composer.phar
+/skip
+/starbound.jar

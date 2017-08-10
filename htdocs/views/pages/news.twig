@@ -1,0 +1,18 @@
+<div id="news">
+    {% if app.user.canPostNews %}
+        <a href="#" onclick="return site.addPost();">Добавить новость</a>
+    {% endif %}
+{% for post in news %}
+{% embed "blocks/table.twig" with {icon: post.icon} %}
+        {% block title %}{% if post.news_type == 0%}<span class="red">СКРЫТ!</span> {% endif %}<a href="{{ path('post', { hrl: post.hrl }) }}">{{ post.title }}</a>{% endblock %}
+        {% block content %}
+            {{ post.content_safe|raw }}
+        {% endblock %}
+        {% block date %}{{ post.dt|date("d.m.Y") }}. <a href="{{ path('post', { hrl: post.hrl }) }}#comments">Комментарии</a>{% endblock %}
+        {% block footer %}
+            {% if post.news_type == 2 %}Перевод новости <a href="http://{{post.news_source}}">{{post.news_source}}</a>{% endif %}
+            {% if app.user.canPostNews %}<div><a href="#" onclick="return site.editPost();">Редактировать</a></div>{% endif %}
+        {% endblock %}
+{% endembed %}
+{% endfor %}
+</div>

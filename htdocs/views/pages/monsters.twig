@@ -1,0 +1,12 @@
+<div id="news">
+    <div class="gallery">
+        <div class="post-title">Пятничные монстры</div>
+        {% for number,monster in monsters %}
+        <div class="sheet">
+            <h2>#{{number}}</h2>
+            <p><a href="/uploads/monsters/{{monster}}"><img src="/uploads/monsters/{{monster}}" /></a></p>
+        </div>
+        {% endfor %}
+        <div style="clear:both;width:1px"></div>
+    </div>
+</div>

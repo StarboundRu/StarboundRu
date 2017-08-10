@@ -1,0 +1,9 @@
+<div id="news">
+{% embed "blocks/table.twig" with {withcomments: true, icon: page.icon} %}
+        {% block title %}{{ page.title }}{% endblock %}
+        {% block content %}
+            {{ page.content|raw }}
+        {% endblock %}
+{% endembed %}
+
+</div>

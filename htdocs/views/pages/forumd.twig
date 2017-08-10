@@ -1,0 +1,12 @@
+<div id="news">
+{% for post in news %}
+{% embed "blocks/table.twig" with {icon: post.icon} %}
+        {% block title %}<a href="{{ path('post', { hrl: post.hrl }) }}">{{ post.title }}</a>{% endblock %}
+        {% block content %}
+            {{ post.content_safe|raw }}
+        {% endblock %}
+        {% block date %}{{ post.dt|date("d.m.Y") }}. <a href="{{ path('post', { hrl: post.hrl }) }}#comments">Комментарии</a>{% endblock %}
+        {% block footer %}{% if post.news_type == 2 %}Перевод новости <a href="http://{{post.news_source}}" target="_blank">{{post.news_source}}</a>{% endif %}{% if post.news_type == 3 %}Перевод страницы <a href="http://{{post.news_source}}" target="_blank">{{post.news_source}}</a>{% endif %}{% endblock %}
+{% endembed %}
+{% endfor %}
+</div>

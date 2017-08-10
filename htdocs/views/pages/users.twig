@@ -1,0 +1,14 @@
+<div id="news">
+{% embed "blocks/table.twig" with {withcomments: false} %}
+        {% block title %}Игроки{% endblock %}
+        {% block custom_content %}
+        <div class="text">В данной таблице представлены достижения пользователей сайта, они не имеют отношения к игровым персонажам Starbound. Игровая статистика появится не раньше выхода игры ;)</div>
+        <div class="userlist_row top"><span class="details">Игрок</span><span class="stat">Возраст</span><span class="stat">Уровень</span><span class="stat">Опыт</span></div>
+        {% for user in users %}
+        <div class="userlist_row"><span class="details"><a href="{{path('user', {username: user.usernameSafe})}}">{{user.username}}</a></span><span class="stat">{{user.age}}</span><span class="stat">{{user.level}}</span><span class="stat">{{user.experience}}</span></div>
+        {% endfor %}
+        <div style="clear:both"></div>
+        {% endblock %}
+{% endembed %}
+
+</div>

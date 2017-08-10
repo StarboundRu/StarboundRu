@@ -1,0 +1,16 @@
+<div id="news">
+{% embed "blocks/table.twig" with {nofooter: true, icon: 6} %}
+        {% block title %}Сервер Starbound{% endblock %}
+        {% block content %}
+    <p>Адрес нашего сервера:</p>
+    <h2>server.starbound.ru</h2>
+    <p class="red">Для игры на сервере необходимо зарегистрироваться на сайте!</p>
+    <p>Специально для нашего сервера мы сделали русский шрифт, чтобы можно было общаться в чате по-русски.</p>
+    <p><a href="http://starbound.ru/files/hobo.ttf">Скачайте наш кириллический шрифт hobo.ttf</a> и скопируйте его в следующие папки:</p>
+<p><code><b>%Steam%\steamapps\Common\Starbound\assets\</b>hobo.ttf
+    <p><img src="http://i.imgur.com/F0plThv.png" /></p>
+        {% endblock %}
+        {% block date %}{% endblock %}
+        {% block footer %}{% endblock %}
+{% endembed %}
+</div>

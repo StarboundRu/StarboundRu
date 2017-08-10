@@ -1,0 +1,10 @@
+<div id="news">
+    {% embed "blocks/table.twig" with {nofooter: true, icon: 1} %}
+        {% block title %}Активация аккаунта{% endblock %}
+        {% block content %}
+        {{ message }}
+        {% endblock %}
+        {% block date %}{% endblock %}
+        {% block footer %}{% endblock %}
+    {% endembed %}
+</div>

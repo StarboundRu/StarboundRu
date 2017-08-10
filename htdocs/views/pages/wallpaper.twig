@@ -1,0 +1,13 @@
+<div id="news">
+    <div class="gallery">
+        <div class="post-title">Обои Starbound</div>
+        {% for name,wp in wallpapers %}
+        <div class="sheet wallpaper">
+            {% if wp.name is defined %}<h2>{{wp.name}}</h2>{%else%}<h2>&nbsp;</h2>{% endif %}
+            <p><img src="/uploads/wallpaper/{{wp.path}}{{name}}thumb.jpg" /></p>
+            <p class="small">{% for size in wp.size %}<a target="_blank" href="/uploads/wallpaper/{{wp.path}}{{name}}{{size}}.{{wp.type}}">{{size}}</a> {% endfor %}</p>
+        </div>
+        {% endfor %}
+        <div style="clear:both;width:1px"></div>
+    </div>
+</div>
